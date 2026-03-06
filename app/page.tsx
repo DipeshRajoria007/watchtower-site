@@ -1,4 +1,4 @@
-import './App.css'
+import Image from 'next/image'
 
 const credibilitySignals = [
   'macOS-native runtime',
@@ -109,17 +109,23 @@ const traceLines = [
   '[12:08:47] learning.signal correction_applied=true',
 ]
 
-function SectionHeading(props: { eyebrow: string; title: string; body: string }) {
+type SectionHeadingProps = {
+  eyebrow: string
+  title: string
+  body: string
+}
+
+function SectionHeading({ eyebrow, title, body }: SectionHeadingProps) {
   return (
     <div className="section-heading">
-      <p className="section-eyebrow">{props.eyebrow}</p>
-      <h2>{props.title}</h2>
-      <p>{props.body}</p>
+      <p className="section-eyebrow">{eyebrow}</p>
+      <h2>{title}</h2>
+      <p>{body}</p>
     </div>
   )
 }
 
-function App() {
+export default function Home() {
   return (
     <div className="page-shell">
       <a className="skip-link" href="#content">
@@ -131,7 +137,15 @@ function App() {
 
       <header className="site-header">
         <a className="brand" href="#top" aria-label="Watchtower home">
-          <img src="/watchtower-mark.svg" alt="" aria-hidden="true" />
+          <Image
+            className="brand__mark"
+            src="/watchtower-mark.svg"
+            alt=""
+            aria-hidden="true"
+            width={26}
+            height={26}
+            priority
+          />
           <span>Watchtower</span>
         </a>
 
@@ -198,9 +212,11 @@ function App() {
               <div className="stage-label">Slack intake</div>
               <p className="stage-title">#release-ops</p>
               <div className="message-stack">
-                <div className="message message--user">"Can someone review this PR before lunch?"</div>
+                <div className="message message--user">&quot;Can someone review this PR before lunch?&quot;</div>
                 <div className="message message--system">Intent detected: PR_REVIEW</div>
-                <div className="message message--user">"Also fix the production toast bug if it is obvious."</div>
+                <div className="message message--user">
+                  &quot;Also fix the production toast bug if it is obvious.&quot;
+                </div>
                 <div className="message message--system">Forking a BUG_FIX lane with trace enabled.</div>
               </div>
             </div>
@@ -294,7 +310,7 @@ function App() {
           <SectionHeading
             eyebrow="PROOF, CONTROL, MEMORY"
             title="The real differentiator is not that it acts. It is that you can see it think."
-            body="Watchtower keeps the operator's nervous system in the product: traces, live sidecar output, recommendations, heat signals, and learned corrections."
+            body="Watchtower keeps the operator&apos;s nervous system in the product: traces, live sidecar output, recommendations, heat signals, and learned corrections."
           />
 
           <div className="proof-layout">
@@ -406,5 +422,3 @@ function App() {
     </div>
   )
 }
-
-export default App

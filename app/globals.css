@@ -1,3 +1,72 @@
+:root {
+  --color-paper: #f2ece2;
+  --color-muted: #b0afa7;
+  --color-cyan: #76e0e3;
+  --color-copper: #c3773a;
+  --color-ink: #121212;
+  color-scheme: dark;
+  font-family: var(--font-body);
+  line-height: 1.5;
+  font-weight: 400;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  scroll-behavior: smooth;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  min-width: 320px;
+  background:
+    radial-gradient(circle at top, rgba(195, 119, 58, 0.16), transparent 28%),
+    radial-gradient(circle at 80% 10%, rgba(118, 224, 227, 0.15), transparent 24%),
+    linear-gradient(180deg, #081012 0%, #0b1011 40%, #070b0c 100%);
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+  background: transparent;
+  color: var(--color-paper);
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(circle at center, transparent 0, rgba(0, 0, 0, 0.22) 75%, rgba(0, 0, 0, 0.45) 100%);
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+button,
+input,
+textarea,
+select {
+  font: inherit;
+}
+
+::selection {
+  background: rgba(118, 224, 227, 0.3);
+  color: var(--color-paper);
+}
+
 .page-shell {
   position: relative;
   overflow: clip;
@@ -84,7 +153,7 @@ main,
   text-transform: uppercase;
 }
 
-.brand img {
+.brand__mark {
   width: 1.6rem;
   height: 1.6rem;
 }
