@@ -853,6 +853,62 @@ main,
   border-color: rgba(218, 210, 196, 0.3);
 }
 
+/* Card hover interactions */
+.pillar-card,
+.workflow-card,
+.learning-card,
+.proof-stat-card {
+  transition: border-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+.pillar-card:hover,
+.workflow-card:hover,
+.learning-card:hover,
+.proof-stat-card:hover {
+  border-color: rgba(218, 210, 196, 0.18);
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.25);
+}
+
+.stage-card {
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.stage-card:hover {
+  border-color: rgba(118, 224, 227, 0.15);
+  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.3);
+}
+
+.manifesto-card {
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.manifesto-card:hover {
+  border-color: rgba(218, 210, 196, 0.15);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.25);
+}
+
+.signal-strip span {
+  transition: color 0.2s ease, border-color 0.2s ease;
+}
+
+.signal-strip span:hover {
+  color: var(--color-paper);
+  border-color: rgba(218, 210, 196, 0.25);
+}
+
+.faq-list details {
+  transition: border-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+.faq-list details:hover {
+  border-color: rgba(218, 210, 196, 0.15);
+}
+
+.faq-list details[open] {
+  border-color: rgba(195, 119, 58, 0.25);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+}
+
 @keyframes drift {
   0%,
   100% {
