@@ -228,15 +228,15 @@ main,
 .demo-section h2 {
   margin: 1rem 0 0;
   font-family: var(--font-display);
-  font-size: clamp(3.6rem, 7vw, 6.7rem);
-  line-height: 0.92;
-  letter-spacing: -0.045em;
+  font-size: clamp(2.6rem, 5vw, 4.8rem);
+  line-height: 1;
+  letter-spacing: -0.04em;
   text-wrap: balance;
 }
 
 .section-heading h2,
 .demo-section h2 {
-  font-size: clamp(2.5rem, 4.8vw, 4.3rem);
+  font-size: clamp(2rem, 4vw, 3.4rem);
 }
 
 .hero-body,
@@ -352,15 +352,15 @@ main,
 
 .hero-stage {
   position: relative;
-  min-height: 44rem;
-  padding: 2rem;
+  display: grid;
+  gap: 1rem;
+  padding: 1rem 0;
 }
 
 .stage-ring {
-  position: absolute;
-  inset: 7rem 4rem 4rem auto;
-  width: 18rem;
-  height: 18rem;
+  justify-self: center;
+  width: 14rem;
+  height: 14rem;
   border-radius: 50%;
   border: 1px solid rgba(118, 224, 227, 0.2);
   box-shadow:
@@ -406,7 +406,6 @@ main,
 }
 
 .stage-card {
-  position: absolute;
   border: 1px solid rgba(218, 210, 196, 0.12);
   border-radius: 1.8rem;
   background:
@@ -417,28 +416,15 @@ main,
 }
 
 .stage-card--thread {
-  top: 0;
-  left: 0;
-  width: min(100%, 28rem);
   padding: 1.4rem;
-  animation: drift 8s ease-in-out infinite;
 }
 
 .stage-card--trace {
-  right: 0;
-  top: 9.5rem;
-  width: min(100%, 24rem);
   padding: 1.3rem;
-  transform: rotate(6deg);
-  animation: drift 10s ease-in-out infinite reverse;
 }
 
 .stage-card--ops {
-  bottom: 0;
-  left: 4rem;
-  width: min(100%, 22rem);
   padding: 1.2rem;
-  animation: drift 11s ease-in-out infinite;
 }
 
 .stage-title {
@@ -513,6 +499,7 @@ main,
 .signal-strip {
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
   gap: 0.8rem;
   padding: 1.4rem;
   margin-top: 1.75rem;
@@ -530,6 +517,7 @@ main,
 
 .section-heading p:last-child,
 .manifesto-card__body {
+  margin-top: 1rem;
   margin-bottom: 0;
 }
 
@@ -642,10 +630,8 @@ main,
 
 .control-room-card__header {
   display: flex;
-  align-items: baseline;
-  justify-content: space-between;
-  gap: 1rem;
-  flex-wrap: wrap;
+  flex-direction: column;
+  gap: 0.5rem;
 }
 
 .control-room-card__header span {
@@ -745,12 +731,38 @@ main,
 .faq-list summary {
   cursor: pointer;
   list-style: none;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
   font-size: 1.18rem;
   font-weight: 700;
 }
 
 .faq-list summary::-webkit-details-marker {
   display: none;
+}
+
+.faq-list summary::after {
+  content: '+';
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+  border: 1px solid rgba(218, 210, 196, 0.2);
+  font-size: 1.2rem;
+  font-weight: 400;
+  color: var(--color-muted);
+  transition: transform 0.2s ease, color 0.2s ease;
+}
+
+.faq-list details[open] summary::after {
+  content: '\2212';
+  color: var(--color-cyan);
+  transform: rotate(180deg);
 }
 
 .faq-list p {
@@ -770,8 +782,11 @@ main,
 .site-footer {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   gap: 1rem;
-  padding: 0 0 2.8rem;
+  padding: 2rem 0 2.8rem;
+  margin-top: 2rem;
+  border-top: 1px solid rgba(218, 210, 196, 0.1);
   color: var(--color-muted);
   font-size: 0.95rem;
 }
@@ -811,39 +826,36 @@ main,
     grid-template-columns: 1fr;
   }
 
-  .hero-stage {
-    min-height: 38rem;
-    margin-top: 1rem;
-  }
-
-  .stage-card--trace {
-    top: 11rem;
-  }
-
-  .stage-card--ops {
-    left: 1.4rem;
-  }
-
   .workflow-grid,
   .pillar-grid {
     grid-template-columns: 1fr 1fr;
   }
 
   .proof-stat-grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 }
 
 @media (max-width: 760px) {
   .site-header {
     grid-template-columns: 1fr;
-    justify-items: start;
+    justify-items: center;
     border-radius: 1.5rem;
+    text-align: center;
+  }
+
+  .brand {
+    justify-self: start;
   }
 
   .site-nav {
-    justify-content: flex-start;
+    justify-content: center;
     gap: 0.9rem;
+  }
+
+  .header-cta {
+    justify-self: stretch;
+    text-align: center;
   }
 
   .hero,
@@ -863,33 +875,28 @@ main,
     scroll-margin-top: 13rem;
   }
 
-  .hero-stage {
-    min-height: auto;
-    padding: 0;
-    display: grid;
-    gap: 1rem;
-  }
-
-  .stage-card,
-  .stage-ring {
-    position: static;
-    width: 100%;
-    transform: none;
-    animation: none;
-  }
-
-  .stage-ring {
-    margin: 0 auto;
-  }
-
   .workflow-grid,
   .pillar-grid,
   .control-room-grid {
     grid-template-columns: 1fr;
   }
 
+  .hero-actions {
+    flex-direction: column;
+  }
+
+  .hero-actions .button {
+    width: 100%;
+    text-align: center;
+  }
+
+  .proof-stat-grid {
+    grid-template-columns: 1fr;
+  }
+
   .site-footer {
     flex-direction: column;
+    text-align: center;
   }
 }
 
