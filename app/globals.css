@@ -221,16 +221,16 @@ main,
 }
 
 .hero {
-  display: grid;
-  grid-template-columns: minmax(0, 1.02fr) minmax(0, 0.98fr);
-  gap: 2.4rem;
+  display: flex;
+  flex-direction: column;
   align-items: center;
+  text-align: center;
   min-height: calc(100vh - 6rem);
+  justify-content: center;
 }
 
 .hero-copy {
-  position: relative;
-  z-index: 1;
+  max-width: 52rem;
 }
 
 .hero-eyebrow,
@@ -333,100 +333,13 @@ main,
   color: var(--color-cyan);
 }
 
-.proof-stat-grid {
+.hero-theater {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 1rem;
-  margin-top: 2.5rem;
-}
-
-.proof-stat-card {
-  padding: 1.1rem 1rem 1rem;
-  border: 1px solid rgba(218, 210, 196, 0.12);
-  border-radius: 1.4rem;
-  background:
-    linear-gradient(180deg, rgba(255, 255, 255, 0.03), rgba(255, 255, 255, 0.01)),
-    rgba(9, 14, 16, 0.76);
-  box-shadow: 0 22px 55px rgba(0, 0, 0, 0.22);
-}
-
-.proof-stat-card strong {
-  display: block;
-  font-family: var(--font-display);
-  font-size: 2.4rem;
-  color: var(--color-paper);
-}
-
-.proof-stat-card span {
-  display: block;
-  margin-top: 0.15rem;
-  color: var(--color-copper);
-  font-family: var(--font-mono);
-  font-size: 0.8rem;
-  letter-spacing: 0.11em;
-  text-transform: uppercase;
-}
-
-.proof-stat-card p {
-  margin: 0.75rem 0 0;
-  color: var(--color-muted);
-  font-size: 0.95rem;
-  line-height: 1.6;
-}
-
-.hero-stage {
-  position: relative;
-  display: grid;
-  gap: 1rem;
-  padding: 1rem 0;
-}
-
-.stage-ring {
-  justify-self: center;
-  width: 14rem;
-  height: 14rem;
-  border-radius: 50%;
-  border: 1px solid rgba(118, 224, 227, 0.2);
-  box-shadow:
-    0 0 0 24px rgba(255, 255, 255, 0.015),
-    0 0 0 48px rgba(255, 255, 255, 0.01);
-  animation: pulse-ring 7s ease-in-out infinite;
-}
-
-.stage-ring::before {
-  content: '';
-  position: absolute;
-  inset: -2.4rem;
-  border-radius: 50%;
-  border: 1px dashed rgba(218, 210, 196, 0.14);
-}
-
-.stage-ring__core {
-  position: absolute;
-  inset: 50%;
-  display: grid;
-  place-items: center;
-  width: 8.7rem;
-  height: 8.7rem;
-  transform: translate(-50%, -50%);
-  border-radius: 50%;
-  background: radial-gradient(circle, rgba(118, 224, 227, 0.26), rgba(10, 14, 16, 0.82) 58%);
-  border: 1px solid rgba(118, 224, 227, 0.3);
-  text-align: center;
-  text-transform: uppercase;
-}
-
-.stage-ring__core strong {
-  font-family: var(--font-display);
-  font-size: 1.8rem;
-  letter-spacing: 0.03em;
-}
-
-.stage-ring__core span {
-  font-family: var(--font-mono);
-  font-size: 0.72rem;
-  letter-spacing: 0.16em;
-  color: var(--color-cyan);
+  grid-template-columns: 1fr 1fr;
+  gap: 1.2rem;
+  max-width: 64rem;
+  width: 100%;
+  margin-top: 3rem;
 }
 
 .stage-card {
@@ -445,10 +358,6 @@ main,
 
 .stage-card--trace {
   padding: 1.3rem;
-}
-
-.stage-card--ops {
-  padding: 1.2rem;
 }
 
 .stage-title {
@@ -498,16 +407,6 @@ main,
   line-height: 1.5;
 }
 
-.ops-badges {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.65rem;
-  padding: 0;
-  margin: 1rem 0 0;
-  list-style: none;
-}
-
-.ops-badges li,
 .signal-strip span {
   padding: 0.6rem 0.8rem;
   border-radius: 999px;
@@ -856,15 +755,13 @@ main,
 /* Card hover interactions */
 .pillar-card,
 .workflow-card,
-.learning-card,
-.proof-stat-card {
+.learning-card {
   transition: border-color 0.25s ease, box-shadow 0.25s ease;
 }
 
 .pillar-card:hover,
 .workflow-card:hover,
-.learning-card:hover,
-.proof-stat-card:hover {
+.learning-card:hover {
   border-color: rgba(218, 210, 196, 0.18);
   box-shadow: 0 24px 60px rgba(0, 0, 0, 0.25);
 }
@@ -919,18 +816,7 @@ main,
   }
 }
 
-@keyframes pulse-ring {
-  0%,
-  100% {
-    transform: translateY(0px) scale(1);
-  }
-  50% {
-    transform: translateY(-10px) scale(1.02);
-  }
-}
-
 @media (max-width: 1100px) {
-  .hero,
   .section-grid,
   .proof-layout {
     grid-template-columns: 1fr;
@@ -939,10 +825,6 @@ main,
   .workflow-grid,
   .pillar-grid {
     grid-template-columns: 1fr 1fr;
-  }
-
-  .proof-stat-grid {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 }
 
@@ -978,6 +860,10 @@ main,
     grid-template-columns: 1fr;
   }
 
+  .hero-theater {
+    grid-template-columns: 1fr;
+  }
+
   .hero-actions {
     flex-direction: column;
   }
@@ -985,10 +871,6 @@ main,
   .hero-actions .button {
     width: 100%;
     text-align: center;
-  }
-
-  .proof-stat-grid {
-    grid-template-columns: 1fr;
   }
 
   .site-footer {
