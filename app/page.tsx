@@ -416,8 +416,28 @@ export default function Home() {
       </main>
 
       <footer className="site-footer">
-        <p>Watchtower</p>
-        <span>Slack-native developer workflows with visible control, sharp edges, and no cloud costume.</span>
+        <div className="footer-left">
+          <p>Watchtower</p>
+          <span>Slack-native developer workflows with visible control, sharp edges, and no cloud costume.</span>
+        </div>
+        <div className="footer-social">
+          <a
+            href="https://github.com/DipeshRajoria007"
+            target="_blank"
+            rel="noreferrer"
+            aria-label="GitHub"
+          >
+            GitHub
+          </a>
+          <a
+            href="https://www.linkedin.com/in/dipeshrajoria/"
+            target="_blank"
+            rel="noreferrer"
+            aria-label="LinkedIn"
+          >
+            LinkedIn
+          </a>
+        </div>
       </footer>
     </div>
   )
