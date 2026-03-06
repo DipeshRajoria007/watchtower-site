@@ -10,12 +10,6 @@ const credibilitySignals = [
   'Learning memory',
 ]
 
-const proofStats = [
-  { value: '4', label: 'operating modes', detail: 'PR review, bug fix, owner autopilot, and dev assist.' },
-  { value: '1', label: 'control surface', detail: 'Slack stays familiar while Watchtower does the routing.' },
-  { value: '0', label: 'invisible handoffs', detail: 'Every run leaves a trace instead of turning into folklore.' },
-]
-
 const pillars = [
   {
     label: 'Slack-native intake',
@@ -185,7 +179,7 @@ export default function Home() {
             </HeroEntrance>
 
             <HeroEntrance delay={0.3}>
-              <div className="hero-actions">
+              <div className="hero-actions hero-actions--centered">
                 <a
                   className="button button--solid"
                   href="https://calendly.com/dipeshrajoria"
@@ -204,59 +198,28 @@ export default function Home() {
                 </a>
               </div>
             </HeroEntrance>
-
-            <Stagger className="proof-stat-grid" stagger={0.1}>
-              {proofStats.map((stat) => (
-                <StaggerItem as="article" className="proof-stat-card" key={stat.label}>
-                  <strong>{stat.value}</strong>
-                  <span>{stat.label}</span>
-                  <p>{stat.detail}</p>
-                </StaggerItem>
-              ))}
-            </Stagger>
           </div>
 
-          <HeroEntrance className="hero-stage" delay={0.25}>
-            <div aria-label="Conceptual Watchtower product theater">
-              <div className="stage-card stage-card--thread">
-                <div className="stage-label">Slack intake</div>
-                <p className="stage-title">#release-ops</p>
-                <div className="message-stack">
-                  <div className="message message--user">&quot;Can someone review this PR before lunch?&quot;</div>
-                  <div className="message message--system">Intent detected: PR_REVIEW</div>
-                  <div className="message message--user">
-                    &quot;Also fix the production toast bug if it is obvious.&quot;
-                  </div>
-                  <div className="message message--system">Forking a BUG_FIX lane with trace enabled.</div>
+          <HeroEntrance className="hero-theater" delay={0.35}>
+            <div className="stage-card stage-card--thread">
+              <div className="stage-label">Slack intake</div>
+              <p className="stage-title">#release-ops</p>
+              <div className="message-stack">
+                <div className="message message--user">&quot;Can someone review this PR before lunch?&quot;</div>
+                <div className="message message--system">Intent detected: PR_REVIEW</div>
+                <div className="message message--user">
+                  &quot;Also fix the production toast bug if it is obvious.&quot;
                 </div>
+                <div className="message message--system">Forking a BUG_FIX lane with trace enabled.</div>
               </div>
+            </div>
 
-              <div className="stage-card stage-card--trace">
-                <div className="stage-label">Execution trace</div>
-                <div className="trace-lines">
-                  {traceLines.map((line) => (
-                    <span key={line}>{line}</span>
-                  ))}
-                </div>
-              </div>
-
-              <div className="stage-card stage-card--ops">
-                <div className="stage-label">Operator stance</div>
-                <p className="stage-title">Owner autopilot when it matters. Guardrails when it should.</p>
-                <ul className="ops-badges">
-                  <li>PR_REVIEW</li>
-                  <li>BUG_FIX</li>
-                  <li>OWNER_AUTOPILOT</li>
-                  <li>DEV_ASSIST</li>
-                </ul>
-              </div>
-
-              <div className="stage-ring">
-                <div className="stage-ring__core">
-                  <span>WATCH</span>
-                  <strong>TRACE</strong>
-                  <span>LEARN</span>
-                </div>
+            <div className="stage-card stage-card--trace">
+              <div className="stage-label">Execution trace</div>
+              <div className="trace-lines">
+                {traceLines.map((line) => (
+                  <span key={line}>{line}</span>
+                ))}
               </div>
             </div>
           </HeroEntrance>
