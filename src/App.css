@@ -119,6 +119,14 @@ main,
   padding: 6.5rem 0 0;
 }
 
+.section-grid[id],
+.workflow-section[id],
+.proof-section[id],
+.faq-section[id],
+.demo-section[id] {
+  scroll-margin-top: 7rem;
+}
+
 .hero {
   display: grid;
   grid-template-columns: minmax(0, 1.02fr) minmax(0, 0.98fr);
@@ -776,6 +784,14 @@ main,
   .faq-section,
   .demo-section {
     padding-top: 4.75rem;
+  }
+
+  .section-grid[id],
+  .workflow-section[id],
+  .proof-section[id],
+  .faq-section[id],
+  .demo-section[id] {
+    scroll-margin-top: 13rem;
   }
 
   .hero-stage {
