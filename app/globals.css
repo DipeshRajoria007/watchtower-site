@@ -853,6 +853,141 @@ main,
   border-color: rgba(218, 210, 196, 0.3);
 }
 
+/* ── Hero entrance animations ── */
+
+@keyframes hero-fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.hero-eyebrow {
+  animation: hero-fade-up 0.7s ease-out both;
+}
+
+.hero h1 {
+  animation: hero-fade-up 0.7s 0.1s ease-out both;
+}
+
+.hero-body {
+  animation: hero-fade-up 0.7s 0.2s ease-out both;
+}
+
+.hero-actions {
+  animation: hero-fade-up 0.7s 0.3s ease-out both;
+}
+
+.proof-stat-grid {
+  animation: hero-fade-up 0.7s 0.4s ease-out both;
+}
+
+.hero-stage {
+  animation: hero-fade-up 0.8s 0.25s ease-out both;
+}
+
+/* ── Scroll-triggered fade-in ── */
+
+@keyframes reveal {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.signal-strip,
+.section-heading,
+.manifesto-card,
+.pillar-card,
+.workflow-card,
+.control-room-card,
+.learning-card,
+.faq-list details,
+.demo-section {
+  animation: reveal linear both;
+  animation-timeline: view();
+  animation-range: entry 0% entry 25%;
+}
+
+/* ── Card hover interactions ── */
+
+.pillar-card,
+.workflow-card,
+.learning-card,
+.proof-stat-card {
+  transition:
+    transform 0.25s ease,
+    border-color 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+.pillar-card:hover,
+.workflow-card:hover,
+.learning-card:hover,
+.proof-stat-card:hover {
+  transform: translateY(-3px);
+  border-color: rgba(218, 210, 196, 0.2);
+  box-shadow: 0 28px 70px rgba(0, 0, 0, 0.3);
+}
+
+.stage-card {
+  transition: border-color 0.3s ease;
+}
+
+.stage-card:hover {
+  border-color: rgba(118, 224, 227, 0.2);
+}
+
+.manifesto-card {
+  transition:
+    transform 0.25s ease,
+    border-color 0.25s ease;
+}
+
+.manifesto-card:hover {
+  transform: translateY(-2px);
+  border-color: rgba(195, 119, 58, 0.25);
+}
+
+.faq-list details {
+  transition:
+    border-color 0.2s ease,
+    background-color 0.2s ease;
+}
+
+.faq-list details:hover {
+  border-color: rgba(218, 210, 196, 0.2);
+}
+
+.faq-list details[open] {
+  border-color: rgba(118, 224, 227, 0.15);
+  background:
+    linear-gradient(180deg, rgba(118, 224, 227, 0.03), transparent 40%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.03), rgba(255, 255, 255, 0.015)),
+    rgba(9, 14, 16, 0.76);
+}
+
+/* ── Signal strip badge hover ── */
+
+.signal-strip span {
+  transition: border-color 0.2s ease, color 0.2s ease;
+}
+
+.signal-strip span:hover {
+  border-color: rgba(118, 224, 227, 0.25);
+  color: var(--color-cyan);
+}
+
+/* ── Ambient animations ── */
+
 @keyframes drift {
   0%,
   100% {
