@@ -1,4 +1,5 @@
 import Image from 'next/image'
+import { FadeIn, Stagger, StaggerItem, HeroEntrance, FadeInSpan, CardHover } from './motion'
 
 const credibilitySignals = [
   'macOS-native runtime',
@@ -117,11 +118,11 @@ type SectionHeadingProps = {
 
 function SectionHeading({ eyebrow, title, body }: SectionHeadingProps) {
   return (
-    <div className="section-heading">
+    <FadeIn className="section-heading">
       <p className="section-eyebrow">{eyebrow}</p>
       <h2>{title}</h2>
       <p>{body}</p>
-    </div>
+    </FadeIn>
   )
 }
 
@@ -170,101 +171,111 @@ export default function Home() {
       <main id="content">
         <section className="hero" id="top">
           <div className="hero-copy">
-            <p className="hero-eyebrow">AUTONOMOUS ENGINEERING OPS FOR LEADERS WHO HATE BLIND AUTOMATION</p>
-            <h1>Slack is where requests appear. Watchtower is where they stop becoming chaos.</h1>
-            <p className="hero-body">
-              Watchtower listens for engineering asks, routes the right autonomous workflow, opens a visible path
-              from thread to action, and keeps every run observable on a Mac your team actually controls.
-            </p>
+            <HeroEntrance>
+              <p className="hero-eyebrow">AUTONOMOUS ENGINEERING OPS FOR LEADERS WHO HATE BLIND AUTOMATION</p>
+            </HeroEntrance>
+            <HeroEntrance delay={0.1}>
+              <h1>Slack is where requests appear. Watchtower is where they stop becoming chaos.</h1>
+            </HeroEntrance>
+            <HeroEntrance delay={0.2}>
+              <p className="hero-body">
+                Watchtower listens for engineering asks, routes the right autonomous workflow, opens a visible path
+                from thread to action, and keeps every run observable on a Mac your team actually controls.
+              </p>
+            </HeroEntrance>
 
-            <div className="hero-actions">
-              <a
-                className="button button--solid"
-                href="https://calendly.com/dipeshrajoria"
-                target="_blank"
-                rel="noreferrer"
-              >
-                Request demo
-              </a>
-              <a
-                className="button button--ghost"
-                href="https://github.com/DipeshRajoria007/watchtower"
-                target="_blank"
-                rel="noreferrer"
-              >
-                See the code
-              </a>
-            </div>
+            <HeroEntrance delay={0.3}>
+              <div className="hero-actions">
+                <a
+                  className="button button--solid"
+                  href="https://calendly.com/dipeshrajoria"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  Request demo
+                </a>
+                <a
+                  className="button button--ghost"
+                  href="https://github.com/DipeshRajoria007/watchtower"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  See the code
+                </a>
+              </div>
+            </HeroEntrance>
 
-            <div className="proof-stat-grid">
+            <Stagger className="proof-stat-grid" stagger={0.1}>
               {proofStats.map((stat) => (
-                <article className="proof-stat-card" key={stat.label}>
+                <StaggerItem as="article" className="proof-stat-card" key={stat.label}>
                   <strong>{stat.value}</strong>
                   <span>{stat.label}</span>
                   <p>{stat.detail}</p>
-                </article>
+                </StaggerItem>
               ))}
-            </div>
+            </Stagger>
           </div>
 
-          <div className="hero-stage" aria-label="Conceptual Watchtower product theater">
-            <div className="stage-card stage-card--thread">
-              <div className="stage-label">Slack intake</div>
-              <p className="stage-title">#release-ops</p>
-              <div className="message-stack">
-                <div className="message message--user">&quot;Can someone review this PR before lunch?&quot;</div>
-                <div className="message message--system">Intent detected: PR_REVIEW</div>
-                <div className="message message--user">
-                  &quot;Also fix the production toast bug if it is obvious.&quot;
+          <HeroEntrance className="hero-stage" delay={0.25}>
+            <div aria-label="Conceptual Watchtower product theater">
+              <div className="stage-card stage-card--thread">
+                <div className="stage-label">Slack intake</div>
+                <p className="stage-title">#release-ops</p>
+                <div className="message-stack">
+                  <div className="message message--user">&quot;Can someone review this PR before lunch?&quot;</div>
+                  <div className="message message--system">Intent detected: PR_REVIEW</div>
+                  <div className="message message--user">
+                    &quot;Also fix the production toast bug if it is obvious.&quot;
+                  </div>
+                  <div className="message message--system">Forking a BUG_FIX lane with trace enabled.</div>
                 </div>
-                <div className="message message--system">Forking a BUG_FIX lane with trace enabled.</div>
+              </div>
+
+              <div className="stage-card stage-card--trace">
+                <div className="stage-label">Execution trace</div>
+                <div className="trace-lines">
+                  {traceLines.map((line) => (
+                    <span key={line}>{line}</span>
+                  ))}
+                </div>
+              </div>
+
+              <div className="stage-card stage-card--ops">
+                <div className="stage-label">Operator stance</div>
+                <p className="stage-title">Owner autopilot when it matters. Guardrails when it should.</p>
+                <ul className="ops-badges">
+                  <li>PR_REVIEW</li>
+                  <li>BUG_FIX</li>
+                  <li>OWNER_AUTOPILOT</li>
+                  <li>DEV_ASSIST</li>
+                </ul>
+              </div>
+
+              <div className="stage-ring">
+                <div className="stage-ring__core">
+                  <span>WATCH</span>
+                  <strong>TRACE</strong>
+                  <span>LEARN</span>
+                </div>
               </div>
             </div>
-
-            <div className="stage-card stage-card--trace">
-              <div className="stage-label">Execution trace</div>
-              <div className="trace-lines">
-                {traceLines.map((line) => (
-                  <span key={line}>{line}</span>
-                ))}
-              </div>
-            </div>
-
-            <div className="stage-card stage-card--ops">
-              <div className="stage-label">Operator stance</div>
-              <p className="stage-title">Owner autopilot when it matters. Guardrails when it should.</p>
-              <ul className="ops-badges">
-                <li>PR_REVIEW</li>
-                <li>BUG_FIX</li>
-                <li>OWNER_AUTOPILOT</li>
-                <li>DEV_ASSIST</li>
-              </ul>
-            </div>
-
-            <div className="stage-ring">
-              <div className="stage-ring__core">
-                <span>WATCH</span>
-                <strong>TRACE</strong>
-                <span>LEARN</span>
-              </div>
-            </div>
-          </div>
+          </HeroEntrance>
         </section>
 
-        <section className="signal-strip" aria-label="Watchtower product signals">
+        <Stagger as="section" className="signal-strip" ariaLabel="Watchtower product signals" stagger={0.05}>
           {credibilitySignals.map((signal) => (
-            <span key={signal}>{signal}</span>
+            <FadeInSpan key={signal}>{signal}</FadeInSpan>
           ))}
-        </section>
+        </Stagger>
 
-        <section className="section-grid" id="why-watchtower">
+        <FadeIn as="section" className="section-grid" id="why-watchtower">
           <SectionHeading
             eyebrow="WHY WATCHTOWER"
             title="Most tools automate the action. Watchtower automates the operating model."
             body="This is not just a bot that replies in Slack. It is a system for turning fast-moving engineering requests into visible, governed work with enough personality to feel human and enough evidence to satisfy adults."
           />
 
-          <div className="manifesto-card">
+          <FadeIn className="manifesto-card" delay={0.15}>
             <p className="manifesto-card__eyebrow">The pitch, minus the perfume</p>
             <p className="manifesto-card__quote">
               If Slack is where work arrives, Watchtower is the calm machine that catches it, chooses the right move,
@@ -274,39 +285,39 @@ export default function Home() {
               It gives engineering leaders a tighter loop between request, execution, and proof without asking the team
               to learn a brand-new ritual just to get help.
             </p>
-          </div>
-        </section>
+          </FadeIn>
+        </FadeIn>
 
-        <section className="pillar-grid" aria-label="Watchtower pillars">
+        <Stagger as="section" className="pillar-grid" ariaLabel="Watchtower pillars" stagger={0.1}>
           {pillars.map((pillar) => (
-            <article className="pillar-card" key={pillar.title}>
+            <CardHover className="pillar-card" key={pillar.title}>
               <p className="pillar-card__label">{pillar.label}</p>
               <h3>{pillar.title}</h3>
               <p>{pillar.body}</p>
-            </article>
+            </CardHover>
           ))}
-        </section>
+        </Stagger>
 
-        <section className="workflow-section" id="how-it-works">
+        <FadeIn as="section" className="workflow-section" id="how-it-works">
           <SectionHeading
             eyebrow="HOW IT WORKS"
             title="Three moves. No magic act."
             body="The product experience is deliberately legible. Inputs are captured, the right workflow acts, and the whole system leaves enough exhaust for supervision, debugging, and trust."
           />
 
-          <div className="workflow-grid">
+          <Stagger className="workflow-grid" stagger={0.12}>
             {workflowSteps.map((step) => (
-              <article className="workflow-card" key={step.index}>
+              <CardHover className="workflow-card" key={step.index}>
                 <div className="workflow-card__index">{step.index}</div>
                 <h3>{step.title}</h3>
                 <p>{step.body}</p>
                 <span>{step.meta}</span>
-              </article>
+              </CardHover>
             ))}
-          </div>
-        </section>
+          </Stagger>
+        </FadeIn>
 
-        <section className="proof-section" id="proof">
+        <FadeIn as="section" className="proof-section" id="proof">
           <SectionHeading
             eyebrow="PROOF, CONTROL, MEMORY"
             title="The real differentiator is not that it acts. It is that you can see it think."
@@ -314,7 +325,7 @@ export default function Home() {
           />
 
           <div className="proof-layout">
-            <article className="control-room-card">
+            <FadeIn as="article" className="control-room-card" delay={0.1}>
               <div className="control-room-card__header">
                 <span>Observable execution</span>
                 <strong>Live run telemetry</strong>
@@ -355,38 +366,40 @@ export default function Home() {
                   </span>
                 </div>
               </div>
-            </article>
+            </FadeIn>
 
-            <div className="learning-grid">
+            <Stagger className="learning-grid" stagger={0.1}>
               {learningCards.map((card) => (
-                <article className="learning-card" key={card.title}>
+                <CardHover className="learning-card" key={card.title}>
                   <p>{card.eyebrow}</p>
                   <h3>{card.title}</h3>
                   <span>{card.body}</span>
-                </article>
+                </CardHover>
               ))}
-            </div>
+            </Stagger>
           </div>
-        </section>
+        </FadeIn>
 
-        <section className="faq-section" id="faq">
+        <FadeIn as="section" className="faq-section" id="faq">
           <SectionHeading
             eyebrow="FAQ"
             title="The practical questions, not the brochure questions."
             body="A good product page should answer what serious buyers are actually going to ask once the adrenaline wears off."
           />
 
-          <div className="faq-list">
+          <Stagger className="faq-list" stagger={0.08}>
             {faqItems.map((item) => (
-              <details key={item.question}>
-                <summary>{item.question}</summary>
-                <p>{item.answer}</p>
-              </details>
+              <StaggerItem key={item.question}>
+                <details>
+                  <summary>{item.question}</summary>
+                  <p>{item.answer}</p>
+                </details>
+              </StaggerItem>
             ))}
-          </div>
-        </section>
+          </Stagger>
+        </FadeIn>
 
-        <section className="demo-section" id="demo">
+        <FadeIn as="section" className="demo-section" id="demo">
           <p className="demo-section__eyebrow">READY FOR A CALMER OPERATING MODEL?</p>
           <h2>Give your engineering org a command room instead of one more bot.</h2>
           <p>
@@ -412,10 +425,10 @@ export default function Home() {
               Explore the product repo
             </a>
           </div>
-        </section>
+        </FadeIn>
       </main>
 
-      <footer className="site-footer">
+      <FadeIn as="footer" className="site-footer">
         <div className="footer-left">
           <p>Watchtower</p>
           <span>Slack-native developer workflows with visible control, sharp edges, and no cloud costume.</span>
@@ -438,7 +451,7 @@ export default function Home() {
             LinkedIn
           </a>
         </div>
-      </footer>
+      </FadeIn>
     </div>
   )
 }
