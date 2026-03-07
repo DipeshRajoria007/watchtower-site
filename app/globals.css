@@ -258,33 +258,6 @@ main,
   text-wrap: balance;
 }
 
-.hero h1 {
-  background: linear-gradient(
-    90deg,
-    var(--color-paper) 0%,
-    var(--color-paper) 40%,
-    var(--color-cyan) 50%,
-    var(--color-paper) 60%,
-    var(--color-paper) 100%
-  );
-  background-size: 200% 100%;
-  background-clip: text;
-  -webkit-background-clip: text;
-  color: transparent;
-  animation: shimmer 6s ease-in-out infinite;
-  transition: text-shadow 0.4s ease;
-}
-
-.hero h1:hover {
-  text-shadow: 0 0 40px rgba(118, 224, 227, 0.15);
-  animation-play-state: paused;
-  background-position: 50% 0;
-}
-
-@keyframes shimmer {
-  0%, 100% { background-position: 100% 0; }
-  50% { background-position: 0% 0; }
-}
 
 .section-heading h2,
 .demo-section h2 {

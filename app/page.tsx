@@ -1,5 +1,5 @@
 import Image from 'next/image'
-import { FadeIn, Stagger, StaggerItem, HeroEntrance, FadeInSpan, CardHover } from './motion'
+import { FadeIn, Stagger, StaggerItem, HeroEntrance, FadeInSpan, CardHover, SpotlightTitle } from './motion'
 
 const credibilitySignals = [
   'macOS-native runtime',
@@ -169,7 +169,7 @@ export default function Home() {
               <p className="hero-eyebrow">AUTONOMOUS ENGINEERING OPS FOR LEADERS WHO HATE BLIND AUTOMATION</p>
             </HeroEntrance>
             <HeroEntrance delay={0.1}>
-              <h1>Slack is where requests appear. Watchtower is where they stop becoming chaos.</h1>
+              <SpotlightTitle>Slack is where requests appear. Watchtower is where they stop becoming chaos.</SpotlightTitle>
             </HeroEntrance>
             <HeroEntrance delay={0.2}>
               <p className="hero-body">

@@ -1,7 +1,7 @@
 'use client'
 
 import { motion, useReducedMotion } from 'framer-motion'
-import type { ReactNode } from 'react'
+import { useCallback, useRef, useState, type ReactNode } from 'react'
 
 const fadeUp = {
   hidden: { opacity: 0, y: 24 },
@@ -185,5 +185,47 @@ export function CardHover({ children, className }: CardHoverProps) {
     >
       {children}
     </motion.article>
+  )
+}
+
+export function SpotlightTitle({ children }: { children: ReactNode }) {
+  const ref = useRef<HTMLHeadingElement>(null)
+  const [pos, setPos] = useState({ x: 50, y: 50 })
+  const [hovering, setHovering] = useState(false)
+  const reduce = useReducedMotion()
+
+  const handleMove = useCallback((e: React.MouseEvent<HTMLHeadingElement>) => {
+    const el = ref.current
+    if (!el) return
+    const rect = el.getBoundingClientRect()
+    setPos({
+      x: ((e.clientX - rect.left) / rect.width) * 100,
+      y: ((e.clientY - rect.top) / rect.height) * 100,
+    })
+  }, [])
+
+  if (reduce) {
+    return <h1>{children}</h1>
+  }
+
+  return (
+    <h1
+      ref={ref}
+      onMouseMove={handleMove}
+      onMouseEnter={() => setHovering(true)}
+      onMouseLeave={() => setHovering(false)}
+      style={{
+        backgroundImage: hovering
+          ? `radial-gradient(circle at ${pos.x}% ${pos.y}%, var(--color-cyan) 0%, var(--color-paper) 50%)`
+          : undefined,
+        WebkitBackgroundClip: hovering ? 'text' : undefined,
+        backgroundClip: hovering ? 'text' : undefined,
+        color: hovering ? 'transparent' : undefined,
+        transition: 'color 0.3s ease',
+        cursor: 'default',
+      }}
+    >
+      {children}
+    </h1>
   )
 }
