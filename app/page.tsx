@@ -104,16 +104,28 @@ const traceLines = [
   '[12:08:47] learning.signal correction_applied=true',
 ]
 
+const footerFeatures = [
+  { icon: '⚡', title: 'Slack-native intake', desc: 'Work arrives where your team already lives' },
+  { icon: '◎', title: 'Traceable execution', desc: 'Every run leaves an inspectable trail' },
+  { icon: '🖥', title: 'Mac-local runtime', desc: 'Desktop operator with local control' },
+  { icon: '🔒', title: 'Governed autonomy', desc: 'Automation with receipts and guardrails' },
+  { icon: '🧠', title: 'Learning memory', desc: 'Gets sharper as the team teaches it' },
+  { icon: '🔍', title: 'Failure diagnosis', desc: 'Postmortems built into the loop' },
+  { icon: '📊', title: 'Ops pulse', desc: 'Live sense of system health and activity' },
+  { icon: '🎭', title: 'Personality memory', desc: 'Channels feel human yet governable' },
+]
+
 type SectionHeadingProps = {
-  eyebrow: string
+  badge: string
+  badgeVariant?: 'cyan' | 'copper'
   title: string
   body: string
 }
 
-function SectionHeading({ eyebrow, title, body }: SectionHeadingProps) {
+function SectionHeading({ badge, badgeVariant = 'cyan', title, body }: SectionHeadingProps) {
   return (
     <FadeIn className="section-heading">
-      <p className="section-eyebrow">{eyebrow}</p>
+      <span className={`pill-badge${badgeVariant === 'copper' ? ' pill-badge--copper' : ''}`}>{badge}</span>
       <h2>{title}</h2>
       <p>{body}</p>
     </FadeIn>
@@ -166,7 +178,7 @@ export default function Home() {
         <section className="hero" id="top">
           <div className="hero-copy">
             <HeroEntrance>
-              <p className="hero-eyebrow">AUTONOMOUS ENGINEERING OPS FOR LEADERS WHO HATE BLIND AUTOMATION</p>
+              <span className="pill-badge">Autonomous engineering ops</span>
             </HeroEntrance>
             <HeroEntrance delay={0.1}>
               <SpotlightTitle>Slack is where requests appear. Watchtower is where they stop becoming chaos.</SpotlightTitle>
@@ -231,9 +243,9 @@ export default function Home() {
           ))}
         </Stagger>
 
-        <FadeIn as="section" className="section-grid" id="why-watchtower">
+        <FadeIn as="section" className="section-block section-glow" id="why-watchtower">
           <SectionHeading
-            eyebrow="WHY WATCHTOWER"
+            badge="Why Watchtower"
             title="Most tools automate the action. Watchtower automates the operating model."
             body="This is not just a bot that replies in Slack. It is a system for turning fast-moving engineering requests into visible, governed work with enough personality to feel human and enough evidence to satisfy adults."
           />
@@ -261,9 +273,10 @@ export default function Home() {
           ))}
         </Stagger>
 
-        <FadeIn as="section" className="workflow-section" id="how-it-works">
+        <FadeIn as="section" className="section-block section-glow--copper" id="how-it-works">
           <SectionHeading
-            eyebrow="HOW IT WORKS"
+            badge="How it works"
+            badgeVariant="copper"
             title="Three moves. No magic act."
             body="The product experience is deliberately legible. Inputs are captured, the right workflow acts, and the whole system leaves enough exhaust for supervision, debugging, and trust."
           />
@@ -280,9 +293,9 @@ export default function Home() {
           </Stagger>
         </FadeIn>
 
-        <FadeIn as="section" className="proof-section" id="proof">
+        <FadeIn as="section" className="section-block section-glow" id="proof">
           <SectionHeading
-            eyebrow="PROOF, CONTROL, MEMORY"
+            badge="Proof, control, memory"
             title="The real differentiator is not that it acts. It is that you can see it think."
             body="Watchtower keeps the operator&apos;s nervous system in the product: traces, live sidecar output, recommendations, heat signals, and learned corrections."
           />
@@ -343,9 +356,10 @@ export default function Home() {
           </div>
         </FadeIn>
 
-        <FadeIn as="section" className="faq-section" id="faq">
+        <FadeIn as="section" className="section-block" id="faq">
           <SectionHeading
-            eyebrow="FAQ"
+            badge="FAQ"
+            badgeVariant="copper"
             title="The practical questions, not the brochure questions."
             body="A good product page should answer what serious buyers are actually going to ask once the adrenaline wears off."
           />
@@ -362,8 +376,8 @@ export default function Home() {
           </Stagger>
         </FadeIn>
 
-        <FadeIn as="section" className="demo-section" id="demo">
-          <p className="demo-section__eyebrow">READY FOR A CALMER OPERATING MODEL?</p>
+        <FadeIn as="section" className="demo-section section-glow--copper" id="demo">
+          <span className="pill-badge pill-badge--copper">Ready for a calmer operating model?</span>
           <h2>Give your engineering org a command room instead of one more bot.</h2>
           <p>
             Watchtower is for leaders who want autonomous developer workflows without giving up inspection,
@@ -392,27 +406,39 @@ export default function Home() {
       </main>
 
       <FadeIn as="footer" className="site-footer">
-        <div className="footer-left">
-          <p>Watchtower</p>
-          <span>Slack-native developer workflows with visible control, sharp edges, and no cloud costume.</span>
+        <div className="footer-features">
+          {footerFeatures.map((f) => (
+            <div className="footer-feature" key={f.title}>
+              <div className="footer-feature__icon">{f.icon}</div>
+              <strong>{f.title}</strong>
+              <span>{f.desc}</span>
+            </div>
+          ))}
         </div>
-        <div className="footer-social">
-          <a
-            href="https://github.com/DipeshRajoria007"
-            target="_blank"
-            rel="noreferrer"
-            aria-label="GitHub"
-          >
-            GitHub
-          </a>
-          <a
-            href="https://www.linkedin.com/in/dipeshrajoria/"
-            target="_blank"
-            rel="noreferrer"
-            aria-label="LinkedIn"
-          >
-            LinkedIn
-          </a>
+
+        <div className="footer-bottom">
+          <div className="footer-left">
+            <p>Watchtower</p>
+            <span>Slack-native developer workflows with visible control.</span>
+          </div>
+          <div className="footer-social">
+            <a
+              href="https://github.com/DipeshRajoria007"
+              target="_blank"
+              rel="noreferrer"
+              aria-label="GitHub"
+            >
+              GitHub
+            </a>
+            <a
+              href="https://www.linkedin.com/in/dipeshrajoria/"
+              target="_blank"
+              rel="noreferrer"
+              aria-label="LinkedIn"
+            >
+              LinkedIn
+            </a>
+          </div>
         </div>
       </FadeIn>
     </div>
