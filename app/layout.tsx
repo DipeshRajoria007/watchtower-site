@@ -1,20 +1,14 @@
 import type { Metadata, Viewport } from 'next'
-import { Literata, Public_Sans, Spline_Sans_Mono } from 'next/font/google'
+import { Inter, JetBrains_Mono } from 'next/font/google'
 import './globals.css'
 
-const displayFont = Literata({
+const sansFont = Inter({
   subsets: ['latin'],
   display: 'swap',
-  variable: '--font-display',
+  variable: '--font-sans',
 })
 
-const bodyFont = Public_Sans({
-  subsets: ['latin'],
-  display: 'swap',
-  variable: '--font-body',
-})
-
-const monoFont = Spline_Sans_Mono({
+const monoFont = JetBrains_Mono({
   subsets: ['latin'],
   display: 'swap',
   variable: '--font-mono',
@@ -58,7 +52,7 @@ export const metadata: Metadata = {
 
 export const viewport: Viewport = {
   colorScheme: 'dark',
-  themeColor: '#0b1011',
+  themeColor: '#0A0A0B',
   width: 'device-width',
   initialScale: 1,
 }
@@ -69,7 +63,7 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en" className={`${displayFont.variable} ${bodyFont.variable} ${monoFont.variable}`}>
+    <html lang="en" className={`${sansFont.variable} ${monoFont.variable}`}>
       <body>{children}</body>
     </html>
   )
