@@ -40,7 +40,7 @@ export const metadata: Metadata = {
     siteName: 'Watchtower',
   },
   twitter: {
-    card: 'summary',
+    card: 'summary_large_image',
     title: 'Watchtower',
     description:
       'Autonomous engineering ops with visible control, traceable execution, and Slack-native intake.',
