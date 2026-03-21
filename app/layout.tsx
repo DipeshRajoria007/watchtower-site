@@ -16,10 +16,11 @@ const monoFont = JetBrains_Mono({
   variable: '--font-mono',
 })
 
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ? new URL(process.env.NEXT_PUBLIC_SITE_URL) : undefined
+const siteUrl = new URL(process.env.NEXT_PUBLIC_SITE_URL ?? 'https://watchtower-site-xi.vercel.app')
 
 export const metadata: Metadata = {
-  ...(siteUrl ? { metadataBase: siteUrl, alternates: { canonical: '/' } } : {}),
+  metadataBase: siteUrl,
+  alternates: { canonical: '/' },
   title: 'Watchtower | Autonomous Engineering Ops With Visible Control',
   description:
     'Watchtower turns Slack requests into visible, governed engineering execution for teams that want autonomy without losing inspection.',
@@ -66,6 +67,28 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={`${sansFont.variable} ${monoFont.variable}`}>
+      <head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              '@context': 'https://schema.org',
+              '@type': 'SoftwareApplication',
+              name: 'Watchtower',
+              applicationCategory: 'DeveloperApplication',
+              operatingSystem: 'macOS',
+              description:
+                'Watchtower turns Slack mentions into autonomous engineering workflows running on your local machine. PR reviews, bug fixes, operator commands — all observable from a desktop dashboard.',
+              offers: {
+                '@type': 'Offer',
+                price: '0',
+                priceCurrency: 'USD',
+              },
+              url: siteUrl.toString(),
+            }),
+          }}
+        />
+      </head>
       <body>
         {children}
         <Analytics />

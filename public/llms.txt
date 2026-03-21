@@ -1,0 +1,50 @@
+# Watchtower
+
+> Autonomous engineering ops for macOS. Slack-native intake. Local execution. Every run observable.
+
+Watchtower is a macOS desktop application that turns Slack mentions into autonomous engineering workflows running on your local machine.
+
+## What It Does
+
+Watchtower listens to Slack (via Socket Mode), detects what's being asked, routes the request to the right workflow, executes it against real local repositories, and posts results back to the same Slack thread. Everything is observable through a desktop dashboard.
+
+## Core Workflows
+
+- **PR Review**: Detects PR review requests from Slack mentions, pulls the diff, runs a multi-agent review pipeline (planner, coder, reviewer, security, performance), and posts findings back to the thread or submits directly to GitHub.
+- **Bug Fix**: Classifies the repository from a bug report in a configured channel, attempts a fix using AI, runs tests, and opens a PR when confident enough.
+- **Owner Autopilot**: Trusted operators can bypass normal workflow guardrails and execute broader tasks across their workspace.
+- **Dev Assist**: Operator console via `wt` commands in Slack — status checks, failure diagnosis, job replays, mission tracking, incident mode, and more.
+- **Graceful Fallback**: Unknown requests still get a personality-aware reply, a thread reaction, and a desktop notification. Nothing silently disappears.
+
+## Architecture
+
+- **Desktop app**: Tauri 2 + React 19 (macOS native)
+- **Sidecar**: Node.js process handling Slack events, workflow routing, and AI execution
+- **Execution engines**: Codex CLI, Claude Code (pluggable backends)
+- **Database**: SQLite (local-first — settings, jobs, logs, learning state)
+- **Slack integration**: Socket Mode (real-time, no webhooks)
+- **GitHub integration**: PR context, diffs, review submission via GitHub API
+
+## Key Principles
+
+- **Slack-native**: Work arrives where teams already coordinate. No new dashboard to check.
+- **Local-first**: Code, repos, auth — everything stays on the developer's machine.
+- **Observable**: Every run has traces, logs, failure diagnostics. Not a black box.
+- **Learning**: Adapts from emoji reactions, corrections, and channel personality over time.
+
+## Multi-Agent Pipeline
+
+When enabled, workflows run through specialized agent stages:
+1. Planner — thinks through the approach
+2. Coder — writes the changes
+3. Reviewer — checks code quality
+4. Security — security analysis
+5. Performance — performance checks
+6. Verifier — final validation
+
+The pipeline can abort early on critical findings and supports reviewer-to-coder feedback loops.
+
+## Links
+
+- Website: https://watchtower-site-xi.vercel.app
+- GitHub: https://github.com/DipeshRajoria007/watchtower
