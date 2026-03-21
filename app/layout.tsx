@@ -46,6 +46,9 @@ export const metadata: Metadata = {
     description:
       'Autonomous engineering ops with visible control, traceable execution, and Slack-native intake.',
   },
+  verification: {
+    google: 'JHexhz7pJb4mR7POxv-wmdm8H_lD6vxOEy5ixl0dq1w',
+  },
   formatDetection: {
     email: false,
     address: false,
